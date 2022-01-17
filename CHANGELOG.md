@@ -1,3 +1,11 @@
+## 0.1.3
+
+- update dependencies
+
+## 0.1.2
+
+- add documentation
+
 ## 0.1.1
 
 - add example file
