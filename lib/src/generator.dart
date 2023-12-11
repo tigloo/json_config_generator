@@ -91,27 +91,23 @@ class JsonConfigGenerator extends GeneratorForAnnotation<Configuration> {
       String? configFile}) {
     String initMethodBody = '';
     if (configFile != null) {
-      initMethodBody +=
-          '''
-      final jsonString = await rootBundle.loadString('$configFile');
+      initMethodBody += '''
+      final jsonString = await File('$configFile').readAsString();
       final ${name.camelCase} = json.decode(jsonString) as Map<String, dynamic>;
     ''';
     } else {
-      initMethodBody =
-          '''
+      initMethodBody = '''
       String path = '';
       switch(${environmentName!.camelCase}){
     ''';
-      environmentMap!.entries.forEach((entry) => initMethodBody +=
-          '''
+      environmentMap!.entries.forEach((entry) => initMethodBody += '''
       case ${environmentName}.${entry.key}:
         path = '${entry.value}';
         break;
     ''');
-      initMethodBody +=
-          '''
+      initMethodBody += '''
       }
-      final jsonString = await rootBundle.loadString(path);
+      final jsonString = await File(path).readAsString()
       final ${name.camelCase} = json.decode(jsonString) as Map<String, dynamic>;
     ''';
     }
