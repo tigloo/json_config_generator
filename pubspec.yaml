@@ -2,7 +2,6 @@ name: json_config_generator
 description: Configuration generator from json files.
 version: 0.1.3
 homepage: https://github.com/deCardenas/json_config_generator
-publish_to: none
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
